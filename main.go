@@ -9,22 +9,22 @@ import (
 )
 
 var (
-	letters = []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
-	numbers = []rune("1234567890")
-	special = []rune("+#*'-,.;:_<>^°!¹²³¼½¬{[]}\"§$%&/()=")
-	umlauts = []rune("öäüÖÄÜ")
+	letters  = []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
+	numbers  = []rune("1234567890")
+	specials = []rune("+#*'-,.;:_<>^°!¹²³¼½¬{[]}\"§$%&/()=")
+	umlauts  = []rune("öäüÖÄÜ")
 
-	noLetters bool
-	noSpecial bool
-	noUmlauts bool
-	noNumbers bool
+	noLetters  bool
+	noSpecials bool
+	noUmlauts  bool
+	noNumbers  bool
 
 	length int64
 )
 
 func parseFlags() {
 	flag.Int64Var(&length, "l", 32, "Password length")
-	flag.BoolVar(&noSpecial, "no-special", false, "No special characters")
+	flag.BoolVar(&noSpecials, "no-specials", false, "No special characters")
 	flag.BoolVar(&noUmlauts, "no-umlauts", false, "No german umlauts")
 	flag.BoolVar(&noNumbers, "no-numbers", false, "No numbers")
 	flag.BoolVar(&noLetters, "no-letters", false, "No letters")
@@ -48,8 +48,8 @@ func main() {
 	if !noNumbers {
 		chars = append(chars, numbers...)
 	}
-	if !noSpecial {
-		chars = append(chars, special...)
+	if !noSpecials {
+		chars = append(chars, specials...)
 	}
 	if !noUmlauts {
 		chars = append(chars, umlauts...)
